@@ -1,0 +1,51 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>{L_ACP_MAILINGLIST_SETTINGS}</h1>
+
+<p>{L_ACP_MAILINGLIST_SETTINGS_EXPLAIN}</p>
+
+<!-- IF S_ERROR -->
+	<div class="errorbox">
+		<h3>{L_WARNING}</h3>
+		<p>{ERROR_MSG}</p>
+	</div>
+<!-- ENDIF -->
+
+<form id="acp_mailinglist" method="post" action="{U_ACTION}">
+<fieldset>
+	<legend>{L_MAILINGLIST_OPTIONS}</legend>
+
+	<dl>
+		<dt><label for="mailinglist_email">{L_MAILINGLIST_EMAIL}:</label><br /><span>{L_MAILINGLIST_EMAIL_EXPLAIN}</span></dt>
+		<dd><input type="text" name="mailinglist_email" id="mailinglist_email" value="{S_MAILINGLIST_EMAIL}" maxlength="200" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="mailinglist_post_type">{L_MAILINGLIST_POST_TYPE}:</label><br /><span>{L_MAILINGLIST_POST_TYPE_EXPLAIN}</span></dt>
+		<dd>
+			<select name="mailinglist_post_type" id="mailinglist_post_type">
+				<option value="1"<!-- IF S_MAILINGLIST_POST_TYPE eq 1 --> selected="selected"<!-- ENDIF -->>{L_NEW_POSTS}</option>
+				<option value="2"<!-- IF S_MAILINGLIST_POST_TYPE eq 2 --> selected="selected"<!-- ENDIF -->>{L_NEW_TOPICS}</option>
+				<option value="3"<!-- IF S_MAILINGLIST_POST_TYPE eq 3 --> selected="selected"<!-- ENDIF -->>{L_NEW_POSTS_NEW_TOPICS}</option>
+			</select>
+		</dd>
+	</dl>
+	<dl>
+		<dt><label for="mailinglist_include_contents">{L_MAILINGLIST_INCLUDE_CONTENTS}:</label><br /><span>{l_MAILINGLIST_INCLUDE_CONTENTS_EXPLAIN}</span></dt>
+		<dd><label><input type="radio" name="mailinglist_include_contents" value="1"<!-- IF S_MAILINGLIST_INCLUDE_CONTENTS --> checked="checked"<!-- ENDIF -->  class="radio" /> {L_YES}</label>
+		<label><input type="radio" name="mailinglist_include_contents" id="mailinglist_include_contents" value="0"<!-- IF not S_MAILINGLIST_INCLUDE_CONTENTS --> checked="checked"<!-- ENDIF --> class="radio" /> {L_NO}</label></dd>
+	</dl>
+	<dl>
+		<dt><label for="mailinglist_unsubscribe">{L_MAILINGLIST_UNSUBSCRIBE}:</label><br /><span>{L_MAILINGLIST_UNSUBSCRIBE_EXPLAIN}</span></dt>
+		<dd><input type="text" name="mailinglist_unsubscribe" id="mailinglist_unsubscribe" value="{S_MAILINGLIST_UNSUBSCRIBE}" maxlength="200" /></dd>
+	</dl>
+	<p class="submit-buttons">
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+	</p>
+	{S_FORM_TOKEN}
+</fieldset>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,8 @@
+services:
+    davidiq.mailinglist.listener:
+        class: davidiq\mailinglist\event\listener
+        arguments:
+            - @config
+            - %core.php_ext%
+        tags:
+            - { name: event.listener }

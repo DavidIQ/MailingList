@@ -1,0 +1,20 @@
+Subject: Topic reply notification - "{TOPIC_TITLE}"
+
+You are receiving this notification because you are on the {SITENAME} mailing list. The topic "{TOPIC_TITLE}" has received a reply by {AUTHOR_NAME}.
+<!-- IF POST_CONTENTS != '' -->
+
+{POST_CONTENTS}
+<!-- ENDIF -->
+
+If you want to view the post, click the following link:
+{U_POST}
+
+If you want to view the forum, click the following link:
+{U_FORUM}
+<!-- IF U_MAILINGLIST_UNSUBSCRIBE != '' -->
+
+If you wish to unsubscribe from this mailing list click the following link:
+{U_MAILINGLIST_UNSUBSCRIBE}
+<!-- ENDIF -->
+
+{EMAIL_SIG}
