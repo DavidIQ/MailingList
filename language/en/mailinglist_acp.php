@@ -51,7 +51,7 @@ $lang = array_merge($lang, array(
 	'MAILINGLIST_INCLUDE_CONTENTS'		=> 'Include post contents',
 	'MAILINGLIST_INCLUDE_CONTENTS_EXPLAIN'	=> 'If set to yes then post contents will be sent in the email.',
 	'MAILINGLIST_UNSUBSCRIBE'			=> 'Mailing list unsubscribe link',
-	'MAILINGLIST_UNSUBSCRIBE_EXPLAIN'	=> 'This will be the link shown at the bottom of mailing list emails so that a user can unsubscribe through another page/service.',
+	'MAILINGLIST_UNSUBSCRIBE_EXPLAIN'	=> 'This will be the link shown at the bottom of emails sent to the mailing list so that a user can unsubscribe from the mailing list.',
 
 	'MAILINGLIST_UPDATED'				=> 'Mailing List settings have been updated.',
 

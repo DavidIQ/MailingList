@@ -90,8 +90,7 @@ class mailinglist_module
 			'S_MAILINGLIST_INCLUDE_CONTENTS'	=> $mailinglist_include_contents,
 			'S_MAILINGLIST_UNSUBSCRIBE'			=> $mailinglist_unsubscribe,
 
-			'U_ACTION'					=> $this->u_action,
+			'U_ACTION'							=> $this->u_action,
 		));
 	}
-	
 }

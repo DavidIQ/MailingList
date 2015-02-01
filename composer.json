@@ -3,7 +3,7 @@
 	"type": "phpbb-extension",
 	"description": "Adds basic mailing list functionality to forward new posts/replies to a mailing list.",
 	"homepage": "https://www.phpbb.com/customise/db/extension/mailinglist/",
-	"version": "3.0.0-dev",
+	"version": "1.0.0-dev",
 	"keywords": ["phpbb", "extension", "email", "mailinglist"],
 	"license": "GPL-2.0",
 	"authors": [

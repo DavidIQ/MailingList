@@ -1,9 +1,11 @@
 Subject: Topic reply notification - "{TOPIC_TITLE}"
 
-You are receiving this notification because you are on the {SITENAME} mailing list. The topic "{TOPIC_TITLE}" has received a reply by {AUTHOR_NAME}.
+You are receiving this notification because you are on the {SITENAME} mailing list. The topic "{TOPIC_TITLE}" has received a reply by {AUTHOR_NAME} in the "{FORUM_NAME}" forum.
 <!-- IF POST_CONTENTS != '' -->
 
+######### BEGIN POST CONTENTS #########
 {POST_CONTENTS}
+#########  END POST CONTENTS  #########
 <!-- ENDIF -->
 
 If you want to view the post, click the following link:
