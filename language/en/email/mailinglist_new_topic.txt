@@ -8,7 +8,7 @@ You are receiving this notification because you are on the {SITENAME} mailing li
 #########  END POST CONTENTS  #########
 <!-- ENDIF -->
 
-If you want to view the topic, click the following link:
+If you want to view or reply to the topic, click the following link:
 {U_TOPIC}
 
 If you want to view the forum, click the following link:
