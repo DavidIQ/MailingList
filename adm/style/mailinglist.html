@@ -18,11 +18,11 @@
 	<legend>{L_MAILINGLIST_OPTIONS}</legend>
 
 	<dl>
-		<dt><label for="mailinglist_email">{L_MAILINGLIST_EMAIL}:</label><br /><span>{L_MAILINGLIST_EMAIL_EXPLAIN}</span></dt>
+		<dt><label for="mailinglist_email">{L_MAILINGLIST_EMAIL}{L_COLON}</label><br /><span>{L_MAILINGLIST_EMAIL_EXPLAIN}</span></dt>
 		<dd><input type="text" name="mailinglist_email" id="mailinglist_email" value="{S_MAILINGLIST_EMAIL}" maxlength="200" /></dd>
 	</dl>
 	<dl>
-		<dt><label for="mailinglist_post_type">{L_MAILINGLIST_POST_TYPE}:</label><br /><span>{L_MAILINGLIST_POST_TYPE_EXPLAIN}</span></dt>
+		<dt><label for="mailinglist_post_type">{L_MAILINGLIST_POST_TYPE}{L_COLON}</label><br /><span>{L_MAILINGLIST_POST_TYPE_EXPLAIN}</span></dt>
 		<dd>
 			<select name="mailinglist_post_type" id="mailinglist_post_type">
 				<option value="1"<!-- IF S_MAILINGLIST_POST_TYPE eq 1 --> selected="selected"<!-- ENDIF -->>{L_NEW_POSTS}</option>
@@ -32,12 +32,12 @@
 		</dd>
 	</dl>
 	<dl>
-		<dt><label for="mailinglist_include_contents">{L_MAILINGLIST_INCLUDE_CONTENTS}:</label><br /><span>{l_MAILINGLIST_INCLUDE_CONTENTS_EXPLAIN}</span></dt>
+		<dt><label for="mailinglist_include_contents">{L_MAILINGLIST_INCLUDE_CONTENTS}{L_COLON}</label><br /><span>{l_MAILINGLIST_INCLUDE_CONTENTS_EXPLAIN}</span></dt>
 		<dd><label><input type="radio" name="mailinglist_include_contents" value="1"<!-- IF S_MAILINGLIST_INCLUDE_CONTENTS --> checked="checked"<!-- ENDIF -->  class="radio" /> {L_YES}</label>
 		<label><input type="radio" name="mailinglist_include_contents" id="mailinglist_include_contents" value="0"<!-- IF not S_MAILINGLIST_INCLUDE_CONTENTS --> checked="checked"<!-- ENDIF --> class="radio" /> {L_NO}</label></dd>
 	</dl>
 	<dl>
-		<dt><label for="mailinglist_unsubscribe">{L_MAILINGLIST_UNSUBSCRIBE}:</label><br /><span>{L_MAILINGLIST_UNSUBSCRIBE_EXPLAIN}</span></dt>
+		<dt><label for="mailinglist_unsubscribe">{L_MAILINGLIST_UNSUBSCRIBE}{L_COLON}</label><br /><span>{L_MAILINGLIST_UNSUBSCRIBE_EXPLAIN}</span></dt>
 		<dd><input type="text" name="mailinglist_unsubscribe" id="mailinglist_unsubscribe" value="{S_MAILINGLIST_UNSUBSCRIBE}" maxlength="200" /></dd>
 	</dl>
 	<p class="submit-buttons">
