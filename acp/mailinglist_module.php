@@ -57,7 +57,7 @@ class mailinglist_module
 		$this->user->add_lang_ext('davidiq/mailinglist', 'mailinglist_acp');
 
 		$this->tpl_name = 'mailinglist';
-		$this->page_title = 'ACP_MAILNGLIST_SETTINGS';
+		$this->page_title = 'ACP_MAILINGLIST_SETTINGS';
 
 		$form_name = 'acp_mailinglist';
 		add_form_key($form_name);
