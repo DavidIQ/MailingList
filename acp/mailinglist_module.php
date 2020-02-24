@@ -75,12 +75,12 @@ class mailinglist_module
 			}
 
 			//Update configuration now
-			$this->config->set('mailinglist_email', $mailinglist_email);
-			$this->config->set('mailinglist_post_type', $mailinglist_post_type);
-			$this->config->set('mailinglist_include_contents', $mailinglist_include_contents);
-			$this->config->set('mailinglist_unsubscribe', $mailinglist_unsubscribe);
+			//$this->config->set('mailinglist_email', $mailinglist_email);
+			//$this->config->set('mailinglist_post_type', $mailinglist_post_type);
+			//$this->config->set('mailinglist_include_contents', $mailinglist_include_contents);
+			//$this->config->set('mailinglist_unsubscribe', $mailinglist_unsubscribe);
 
-			$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_MAILINGLIST_UPDATED');
+			//$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_MAILINGLIST_UPDATED');
 			trigger_error($user->lang['MAILINGLIST_UPDATED'] . adm_back_link($this->u_action));
 		}
 
