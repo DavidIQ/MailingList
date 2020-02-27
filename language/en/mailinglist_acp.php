@@ -59,5 +59,6 @@ $lang = array_merge($lang, array(
 
 	'MAILINGLIST_EMAIL_REQUIRED'        => 'The mailing list email is required',
 	'MAILINGLIST_FORUM_OPTION_REQUIRED' => 'At least one forum should be selected or the <i>All forums</i> option checked.',
-	'MAILINGLIST_UPDATED'				   => 'Mailing List settings have been updated.',
+	'MAILINGLIST_UPDATED'				   => 'Mailing List settings have been updated for %s.',
+   'MAILINGLIST_CREATED'				   => 'Mailing List created: %s.',
 ));

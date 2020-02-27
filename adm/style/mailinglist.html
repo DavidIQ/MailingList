@@ -25,7 +25,7 @@
 		</dl>
 		<dl>
 			<dt><label for="mailinglist_forums">{{ lang('MAILINGLIST_FORUMS') ~ lang('COLON') }}</label><br><span>{{ lang('MAILINGLIST_FORUMS_EXPLAIN') }}</span></dt>
-			<dd><select id="mailinglist_forums" name="mailinglist_forum_id[]" multiple="multiple" size="10">{{ S_FORUM_OPTIONS }}</select></dd>
+			<dd><select id="mailinglist_forums" name="mailinglist_forum_ids[]" multiple="multiple" size="10">{{ S_FORUM_OPTIONS }}</select></dd>
 			<dd><label><input type="checkbox" class="radio" name="all_forums" value="1"{% if S_ALL_FORUMS %} checked="checked"{% endif %}> {{ lang('ALL_FORUMS') }}</label></dd>
 		</dl>
 		<dl>
@@ -50,6 +50,7 @@
 		<p class="submit-buttons">
 			<input class="button1" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}">&nbsp;
 			<input class="button2" type="submit" id="cancel" name="cancel" value="{{ lang('CANCEL') }}">
+			<input type="hidden" name="action" value="{% if S_ADD_MAILINGLIST %}add{% else %}edit{% endif %}">
 		</p>
 		{{ S_FORM_TOKEN }}
 	</fieldset>
@@ -73,7 +74,7 @@
 		{% for mailinglist in mailinglists %}
 			<tr>
 				<td style="vertical-align: top;">{{ mailinglist.EMAIL }}</td>
-				<td style="vertical-align: top;">{{ mailinglist.FORUMS }}</td>
+				<td style="vertical-align: top;">{% if mailinglist.FORUMS %}{{ mailinglist.FORUMS }}{% else %}{{ lang('ALL_FORUMS') }}{% endif %}</td>
 				<td style="vertical-align: top;">{{ lang(mailinglist.POST_TYPE) }}</td>
 				<td style="vertical-align: top;">{{ lang(mailinglist.INCLUDE_CONTENTS) }}</td>
 				<td style="vertical-align: top;">{{ lang(mailinglist.UNSUBSCRIBE) }}</td>

@@ -112,4 +112,64 @@ class mailinglist_manager
 
          return $mailinglist_data;
    }
+
+   /**
+    * Inserts a mailinglist
+    *
+    * @param $data array  The data to insert
+    */
+   public function insert_mailinglist($data)
+   {
+      $forum_ids = $data['forum_ids'];
+      unset($data['forum_ids']);
+
+      $sql = "INSERT INTO {$this->mailinglists_table} " . $this->db->sql_build_array('INSERT', $data);
+      $this->db->sql_query($sql);
+      $mailinglist_id = (int) $this->db->sql_nextid();
+
+      $this->insert_mailinglist_forums($mailinglist_id, $forum_ids);
+
+      $this->cache->destroy(self::DATA_CACHE_KEY);
+   }
+
+   /**
+    * Update an existing mailinglist
+    *
+    * @param $data array  The data to update
+    * @param $mailinglist_id integer  The mailinglist ID to update
+    */
+   public function update_mailinglist($data, $mailinglist_id)
+   {
+      $forum_ids = $data['forum_ids'];
+      unset($data['forum_ids']);
+
+      $this->remove_mailinglist_forums($mailinglist_id);
+      $sql = "UPDATE {$this->mailinglists_table} SET " . $this->db->sql_build_array('UPDATE', $data) .
+            ' WHERE mailinglist_id = ' . (int) $mailinglist_id;
+      $this->db->sql_query($sql);
+
+      $this->insert_mailinglist_forums($mailinglist_id, $forum_ids);
+
+      $this->cache->destroy(self::DATA_CACHE_KEY);
+   }
+
+   private function remove_mailinglist_forums($mailinglist_id)
+   {
+      $sql = "DELETE FROM {$this->mailinglists_forums_table}
+               WHERE mailinglist_id = " . (int) $mailinglist_id;
+      $this->db->sql_query($sql);
+   }
+
+   private function insert_mailinglist_forums($mailinglist_id, $forum_ids)
+   {
+      foreach ($forum_ids as $forum_id)
+      {
+         $sql = "INSERT INTO {$this->mailinglists_forums_table} " . $this->db->sql_build_array('INSERT',
+         [
+            'mailinglist_id'  => $mailinglist_id,
+            'mailinglist_forum_id' => $forum_id
+         ]);
+         $this->db->sql_query($sql);
+      }
+   }
 }

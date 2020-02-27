@@ -42,4 +42,5 @@ $lang = array_merge($lang, array(
 
 	// ACP Logs
 	'LOG_MAILINGLIST_UPDATED'			=> '<strong>Updated Mailing List Settings</strong>',
+   'LOG_MAILINGLIST_CREATED'			=> '<strong>Created Mailing List</strong>',
 ));
