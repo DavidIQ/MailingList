@@ -34,25 +34,30 @@ if (empty($lang) || !is_array($lang))
 // NOTE TO TRANSLATORS:  Text in parenthesis refers to keys on the keyboard
 
 $lang = array_merge($lang, array(
-	'ACP_MAILINGLIST_SETTINGS'			=> 'Mailing list settings',
+	'ACP_MAILINGLIST_SETTINGS'			   => 'Mailing list settings',
 	'ACP_MAILINGLIST_SETTINGS_EXPLAIN'	=> 'This extension will send notification to a specified mailing list when a new post or reply is created.',
 
-	'MAILINGLIST_OPTIONS'				=> 'Mailing list options',
+	'MAILINGLIST_OPTIONS'				   => 'Mailing list options',
 
-	'MAILINGLIST_EMAIL'					=> 'Mailing list email',
+	'MAILINGLIST_EMAIL'					   => 'Mailing list email',
 	'MAILINGLIST_EMAIL_EXPLAIN'			=> 'This will be the mailing list to which notifications will be sent',
-	'MAILINGLIST_POST_TYPE'				=> 'Post type',
+	'MAILINGLIST_FORUMS'                => 'Subscribed forums',
+	'MAILINGLIST_FORUMS_EXPLAIN'        => 'Select the forums that will be included for this mailing list. You are able to select more than one forum.',
+	'MAILINGLIST_POST_TYPE'				   => 'Post type',
 	'MAILINGLIST_POST_TYPE_EXPLAIN'		=> 'Select the type of posts for which to send notifications to the mailing list.',
 
-	'NEW POSTS'							=> 'New posts',
-	'NEW_TOPICS'						=> 'New topics',
-	'NEW_POSTS_NEW_TOPICS'				=> 'New posts & New topics',
+	'NEW POSTS'							      => 'New posts',
+	'NEW_TOPICS'						      => 'New topics',
+	'NEW_POSTS_NEW_TOPICS'				   => 'New posts & New topics',
+	'NO_MAILING_LISTS'                  => 'No mailing lists currently configured.',
+	'HAS_UNSUBSCRIBE_LINK'              => 'Can unsubscribe',
 
 	'MAILINGLIST_INCLUDE_CONTENTS'		=> 'Include post contents',
 	'MAILINGLIST_INCLUDE_CONTENTS_EXPLAIN'	=> 'If set to yes then post contents will be sent in the email.',
-	'MAILINGLIST_UNSUBSCRIBE'			=> 'Mailing list unsubscribe link',
+	'MAILINGLIST_UNSUBSCRIBE'			   => 'Mailing list unsubscribe link',
 	'MAILINGLIST_UNSUBSCRIBE_EXPLAIN'	=> 'This will be the link shown at the bottom of emails sent to the mailing list so that a user can unsubscribe from the mailing list.',
 
-	'MAILINGLIST_UPDATED'				=> 'Mailing List settings have been updated.',
-
+	'MAILINGLIST_EMAIL_REQUIRED'        => 'The mailing list email is required',
+	'MAILINGLIST_FORUM_OPTION_REQUIRED' => 'At least one forum should be selected or the <i>All forums</i> option checked.',
+	'MAILINGLIST_UPDATED'				   => 'Mailing List settings have been updated.',
 ));

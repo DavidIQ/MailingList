@@ -1,51 +1,99 @@
-<!-- INCLUDE overall_header.html -->
+{% include 'overall_header.html' %}
 
 <a name="maincontent"></a>
 
-<h1>{L_ACP_MAILINGLIST_SETTINGS}</h1>
+<h1>{{ lang('ACP_MAILINGLIST_SETTINGS') }}</h1>
 
-<p>{L_ACP_MAILINGLIST_SETTINGS_EXPLAIN}</p>
+{% if S_ADD_MAILINGLIST or S_EDIT_MAILINGLIST %}
 
-<!-- IF S_ERROR -->
-	<div class="errorbox">
-		<h3>{L_WARNING}</h3>
-		<p>{ERROR_MSG}</p>
-	</div>
-<!-- ENDIF -->
+	<p>{{ lang('ACP_MAILINGLIST_SETTINGS_EXPLAIN') }}</p>
 
-<form id="acp_mailinglist" method="post" action="{U_ACTION}">
-<fieldset>
-	<legend>{L_MAILINGLIST_OPTIONS}</legend>
+	{% if S_ERROR %}
+		<div class="errorbox">
+			<h3>{{ lang('WARNING') }}</h3>
+			<p>{{ ERROR_MSG }}</p>
+		</div>
+	{% endif %}
 
-	<dl>
-		<dt><label for="mailinglist_email">{L_MAILINGLIST_EMAIL}{L_COLON}</label><br /><span>{L_MAILINGLIST_EMAIL_EXPLAIN}</span></dt>
-		<dd><input type="text" name="mailinglist_email" id="mailinglist_email" value="{S_MAILINGLIST_EMAIL}" maxlength="200" /></dd>
-	</dl>
-	<dl>
-		<dt><label for="mailinglist_post_type">{L_MAILINGLIST_POST_TYPE}{L_COLON}</label><br /><span>{L_MAILINGLIST_POST_TYPE_EXPLAIN}</span></dt>
-		<dd>
-			<select name="mailinglist_post_type" id="mailinglist_post_type">
-				<option value="1"<!-- IF S_MAILINGLIST_POST_TYPE eq 1 --> selected="selected"<!-- ENDIF -->>{L_NEW_POSTS}</option>
-				<option value="2"<!-- IF S_MAILINGLIST_POST_TYPE eq 2 --> selected="selected"<!-- ENDIF -->>{L_NEW_TOPICS}</option>
-				<option value="3"<!-- IF S_MAILINGLIST_POST_TYPE eq 3 --> selected="selected"<!-- ENDIF -->>{L_NEW_POSTS_NEW_TOPICS}</option>
-			</select>
-		</dd>
-	</dl>
-	<dl>
-		<dt><label for="mailinglist_include_contents">{L_MAILINGLIST_INCLUDE_CONTENTS}{L_COLON}</label><br /><span>{l_MAILINGLIST_INCLUDE_CONTENTS_EXPLAIN}</span></dt>
-		<dd><label><input type="radio" name="mailinglist_include_contents" value="1"<!-- IF S_MAILINGLIST_INCLUDE_CONTENTS --> checked="checked"<!-- ENDIF -->  class="radio" /> {L_YES}</label>
-		<label><input type="radio" name="mailinglist_include_contents" id="mailinglist_include_contents" value="0"<!-- IF not S_MAILINGLIST_INCLUDE_CONTENTS --> checked="checked"<!-- ENDIF --> class="radio" /> {L_NO}</label></dd>
-	</dl>
-	<dl>
-		<dt><label for="mailinglist_unsubscribe">{L_MAILINGLIST_UNSUBSCRIBE}{L_COLON}</label><br /><span>{L_MAILINGLIST_UNSUBSCRIBE_EXPLAIN}</span></dt>
-		<dd><input type="text" name="mailinglist_unsubscribe" id="mailinglist_unsubscribe" value="{S_MAILINGLIST_UNSUBSCRIBE}" maxlength="200" /></dd>
-	</dl>
-	<p class="submit-buttons">
-		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
-		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
-	</p>
-	{S_FORM_TOKEN}
-</fieldset>
-</form>
+	<form id="acp_mailinglist" method="post" action="{{ U_ACTION }}">
+	<fieldset>
+		<legend>{{ lang('MAILINGLIST_OPTIONS') }}</legend>
 
-<!-- INCLUDE overall_footer.html -->
+		<dl>
+			<dt><label for="mailinglist_email">{{ lang('MAILINGLIST_EMAIL') ~ lang('COLON') }}</label><br><span>{{ lang('MAILINGLIST_EMAIL_EXPLAIN') }}</span></dt>
+			<dd><input type="text" name="mailinglist_email" id="mailinglist_email" value="{{ S_MAILINGLIST_EMAIL }}" maxlength="500" size="40"></dd>
+		</dl>
+		<dl>
+			<dt><label for="mailinglist_forums">{{ lang('MAILINGLIST_FORUMS') ~ lang('COLON') }}</label><br><span>{{ lang('MAILINGLIST_FORUMS_EXPLAIN') }}</span></dt>
+			<dd><select id="mailinglist_forums" name="mailinglist_forum_id[]" multiple="multiple" size="10">{{ S_FORUM_OPTIONS }}</select></dd>
+			<dd><label><input type="checkbox" class="radio" name="all_forums" value="1"{% if S_ALL_FORUMS %} checked="checked"{% endif %}> {{ lang('ALL_FORUMS') }}</label></dd>
+		</dl>
+		<dl>
+			<dt><label for="mailinglist_post_type">{{ lang('MAILINGLIST_POST_TYPE') ~ lang('COLON') }}</label><br><span>{{ lang('MAILINGLIST_POST_TYPE_EXPLAIN') }}</span></dt>
+			<dd>
+				<select name="mailinglist_post_type" id="mailinglist_post_type">
+					<option value="1"{% if S_MAILINGLIST_POST_TYPE eq 1 %} selected="selected"{% endif %}>{{ lang('NEW_POSTS') }}</option>
+					<option value="2"{% if S_MAILINGLIST_POST_TYPE eq 2 %} selected="selected"{% endif %}>{{ lang('NEW_TOPICS') }}</option>
+					<option value="3"{% if S_MAILINGLIST_POST_TYPE eq 3 %} selected="selected"{% endif %}>{{ lang('NEW_POSTS_NEW_TOPICS') }}</option>
+				</select>
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="mailinglist_include_contents">{{ lang('MAILINGLIST_INCLUDE_CONTENTS')  ~ lang('COLON') }}</label><br><span>{{ lang('MAILINGLIST_INCLUDE_CONTENTS_EXPLAIN') }}</span></dt>
+			<dd><label><input type="radio" name="mailinglist_include_contents" value="1"{% if S_MAILINGLIST_INCLUDE_CONTENTS %} checked="checked"{% endif %}  class="radio"> {{ lang('YES') }}</label>
+			<label><input type="radio" name="mailinglist_include_contents" id="mailinglist_include_contents" value="0"{% if not S_MAILINGLIST_INCLUDE_CONTENTS %} checked="checked"{% endif %} class="radio"> {{ lang('NO') }}</label></dd>
+		</dl>
+		<dl>
+			<dt><label for="mailinglist_unsubscribe">{{ lang('MAILINGLIST_UNSUBSCRIBE') ~ lang('COLON') }}</label><br><span>{{ lang('MAILINGLIST_UNSUBSCRIBE_EXPLAIN') }}</span></dt>
+			<dd><input type="text" name="mailinglist_unsubscribe" id="mailinglist_unsubscribe" value="{{ S_MAILINGLIST_UNSUBSCRIBE }}" maxlength="500" size="40"></dd>
+		</dl>
+		<p class="submit-buttons">
+			<input class="button1" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}">&nbsp;
+			<input class="button2" type="submit" id="cancel" name="cancel" value="{{ lang('CANCEL') }}">
+		</p>
+		{{ S_FORM_TOKEN }}
+	</fieldset>
+	</form>
+
+{% else %}
+
+	<form id="mailinglists" method="post" action="{U_ACTION}">
+		<table class="table1 zebra-table">
+		<thead>
+		<tr>
+			<th>{{ lang('MAILINGLIST_EMAIL') }}</th>
+			<th>{{ lang('MAILINGLIST_FORUMS') }}</th>
+			<th>{{ lang('MAILINGLIST_POST_TYPE') }}</th>
+			<th>{{ lang('MAILINGLIST_INCLUDE_CONTENTS') }}</th>
+			<th>{{ lang('HAS_UNSUBSCRIBE_LINK') }}</th>
+			<th colspan="2" style="text-align: center;">{{ lang('ACTIONS') }}</th>
+		</tr>
+		</thead>
+		<tbody>
+		{% for mailinglist in mailinglists %}
+			<tr>
+				<td style="vertical-align: top;">{{ mailinglist.EMAIL }}</td>
+				<td style="vertical-align: top;">{{ mailinglist.FORUMS }}</td>
+				<td style="vertical-align: top;">{{ lang(mailinglist.POST_TYPE) }}</td>
+				<td style="vertical-align: top;">{{ lang(mailinglist.INCLUDE_CONTENTS) }}</td>
+				<td style="vertical-align: top;">{{ lang(mailinglist.UNSUBSCRIBE) }}</td>
+				<td style="text-align: center;"><a href="{{ mailinglist.U_EDIT }}">{{ lang('EDIT') }}</a></td>
+				<td style="text-align: center;"><a href="{{ mailinglist.U_DELETE }}" data-ajax="row_delete">{{ lang('DELETE') }}</a></td>
+			</tr>
+		{% else %}
+			<tr>
+				<td colspan="7" style="text-align: center;">{{ lang('NO_MAILING_LISTS') }}</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+
+		<fieldset class="quick">
+			<input class="button2" type="submit" name="add" value="{{ lang('ADD') }}">
+			<input type="hidden" name="action" value="add" />
+		</fieldset>
+	</form>
+
+{% endif %}
+
+{% include 'overall_footer.html' %}

@@ -1,0 +1,3 @@
+parameters:
+    davidiq.mailinglist.tables.mailinglists: '%core.table_prefix%mailinglists'
+    davidiq.mailinglist.tables.mailinglists_forums: '%core.table_prefix%mailinglists_forums'

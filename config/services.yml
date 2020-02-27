@@ -1,3 +1,6 @@
+imports:
+    - { resource: tables.yml }
+
 services:
     davidiq.mailinglist.listener:
         class: davidiq\mailinglist\event\listener
@@ -7,3 +10,13 @@ services:
             - '%core.php_ext%'
         tags:
             - { name: event.listener }
+
+    davidiq.mailinglist.manager:
+        class: davidiq\mailinglist\managers\mailinglist_manager
+        arguments:
+            - '@cache.driver'
+            - '@dbal.conn'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+            - '%davidiq.mailinglist.tables.mailinglists%'
+            - '%davidiq.mailinglist.tables.mailinglists_forums%'
