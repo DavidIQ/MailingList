@@ -1,22 +1,22 @@
 <?php
 /**
-* Mailing List extension for the phpBB Forum Software package.
-*
-* @copyright (c) 2015 DavidIQ.com
-* @license GNU General Public License, version 2 (GPL-2.0)
-*/
+ * Mailing List extension for the phpBB Forum Software package.
+ *
+ * @copyright (c) 2015 DavidIQ.com
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ */
 
 /**
-* DO NOT CHANGE
-*/
+ * DO NOT CHANGE
+ */
 if (!defined('IN_PHPBB'))
 {
-	exit;
+    exit;
 }
 
 if (empty($lang) || !is_array($lang))
 {
-	$lang = array();
+    $lang = array();
 }
 
 // DEVELOPERS PLEASE NOTE
@@ -36,12 +36,12 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	// ACP Module
-	'ACP_CAT_MAILINGLIST'				=> 'Mailing List',
-	'ACP_MAILINGLIST_SETTINGS'			=> 'Mailing List Settings',
+    // ACP Module
+    'ACP_CAT_MAILINGLIST'      => 'Mailing List',
+    'ACP_MAILINGLIST_SETTINGS' => 'Mailing List Settings',
 
-	// ACP Logs
-	'LOG_MAILINGLIST_UPDATED'			=> '<strong>Updated Mailing List Settings</strong>',
-   'LOG_MAILINGLIST_CREATED'			=> '<strong>Created Mailing List</strong>',
-   'LOG_MAILINGLIST_DELETED'        => '<strong>Deleted Mailing List</strong>',
+    // ACP Logs
+    'LOG_MAILINGLIST_UPDATED' => '<strong>Updated Mailing List: %1$s</strong>',
+    'LOG_MAILINGLIST_CREATED' => '<strong>Created Mailing List: %1$s</strong>',
+    'LOG_MAILINGLIST_DELETED' => '<strong>Deleted Mailing List: %1$s</strong>',
 ));

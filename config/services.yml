@@ -5,7 +5,7 @@ services:
     davidiq.mailinglist.listener:
         class: davidiq\mailinglist\event\listener
         arguments:
-            - '@config'
+            - '@davidiq.mailinglist.manager'
             - '%core.root_path%'
             - '%core.php_ext%'
         tags:

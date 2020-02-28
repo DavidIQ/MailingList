@@ -15,7 +15,6 @@ class mailinglist_info
 		return array(
 			'filename'	=> '\davidiq\mailinglist\acp\mailinglist_module',
 			'title'		=> 'ACP_MAILINGLIST_SETTINGS',
-			'version'	=> '1.0.0',
 			'modes'		=> array(
 				'main'		=> array(
 						'title' => 'ACP_MAILINGLIST_SETTINGS',
