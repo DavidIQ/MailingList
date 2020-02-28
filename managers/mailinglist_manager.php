@@ -153,6 +153,19 @@ class mailinglist_manager
       $this->cache->destroy(self::DATA_CACHE_KEY);
    }
 
+   /**
+    * Delete a mailinglist
+    *
+    * @param $mailinglist_id integer  The mailinglist ID
+    */
+   public function delete_mailinglist($mailinglist_id)
+   {
+      $this->remove_mailinglist_forums($mailinglist_id);
+      $sql = "DELETE FROM {$this->mailinglists_table} WHERE mailinglist_id = " . (int) $mailinglist_id;
+      $this->db->sql_query($sql);
+      $this->cache->destroy(self::DATA_CACHE_KEY);
+   }
+
    private function remove_mailinglist_forums($mailinglist_id)
    {
       $sql = "DELETE FROM {$this->mailinglists_forums_table}

@@ -68,6 +68,7 @@ class mailinglist_module
 		$form_name = 'acp_mailinglist';
 		$action = $this->request->is_set_post('cancel') ? '' : $this->request->variable('action', '');
       $mailinglist_id = $this->request->variable('mailinglist_id', 0);
+      $submit = $this->request->is_set_post('submit');
 
 		switch ($action)
       {
@@ -84,7 +85,7 @@ class mailinglist_module
                'forum_ids'                      => [],
             ];
 
-            if ($this->request->is_set_post('submit'))
+            if ($submit)
             {
                if (!check_form_key($form_name))
                {
@@ -153,6 +154,23 @@ class mailinglist_module
             break;
 
          case 'delete':
+            if (confirm_box(true))
+			   {
+			      $mailinglist_data = $this->mailinglist_manager->get_mailing_list($mailinglist_id);
+			      $this->mailinglist_manager->delete_mailinglist($mailinglist_id);
+               $this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_MAILINGLIST_DELETED', false, $mailinglist_data['mailinglist_email']);
+               trigger_error(sprintf($this->user->lang('MAILINGLIST_DELETED'), $mailinglist_data['mailinglist_email']) . adm_back_link($this->u_action));
+            }
+            else
+			   {
+               $s_hidden_fields = array(
+                  'submit'			   => $submit,
+                  'mailinglist_id'	=> $mailinglist_id,
+               );
+
+               $s_hidden_fields = build_hidden_fields($s_hidden_fields);
+   				confirm_box(false, $this->user->lang('MAILINGLIST_DELETE_CONFIRM'), $s_hidden_fields);
+			   }
             break;
 
          default:
