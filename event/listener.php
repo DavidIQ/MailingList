@@ -64,18 +64,17 @@ class listener implements EventSubscriberInterface
     public function send_to_mailinglist($event)
     {
         $notification_type_name = $event['notification_type_name'];
+        if (!in_array($notification_type_name, ['notification.type.topic', 'notification.type.post']))
+        {
+            return;
+        }
+
         $new_topic = ($notification_type_name == 'notification.type.topic');
         $post_data = $event['data'];
-        $mailinglists = $this->mailinglist_manager->get_mailing_list($post_data['forum_id']);
+        $mailinglists = $this->mailinglist_manager->get_forum_mailinglists($post_data['forum_id'], $new_topic);
 
-        if (count($mailinglists) && ($notification_type_name == 'notification.type.topic' || $notification_type_name == 'notification.type.post'))
+        if (count($mailinglists))
         {
-            if (($new_topic && $mailinglists['mailinglist_post_type'] == mailinglist_manager::NEW_POSTS) ||
-                (!$new_topic && $mailinglists['mailinglist_post_type'] == mailinglist_manager::NEW_TOPICS))
-            {
-                return;
-            }
-
             foreach ($mailinglists as $mailinglist)
             {
                 $email_data = array(

@@ -10,7 +10,6 @@ namespace davidiq\mailinglist\managers;
 
 class mailinglist_manager
 {
-
     const NEW_POSTS = 1;
     const NEW_TOPICS = 2;
     const NEW_POSTS_NEW_TOPICS = 3;
@@ -67,15 +66,15 @@ class mailinglist_manager
                      mailinglist_post_type,
                      mailinglist_include_contents,
                      mailinglist_unsubscribe
-           FROM {$this->mailinglists_table}";
+                FROM {$this->mailinglists_table}";
             $result = $this->db->sql_query($sql);
 
             while ($row = $this->db->sql_fetchrow($result))
             {
                 $sql2 = "SELECT m.mailinglist_forum_id, f.forum_name
-               FROM {$this->mailinglists_forums_table} m
-               JOIN " . FORUMS_TABLE . " f ON f.forum_id = m.mailinglist_forum_id
-               WHERE m.mailinglist_id = {$row['mailinglist_id']}";
+                   FROM {$this->mailinglists_forums_table} m
+                   JOIN " . FORUMS_TABLE . " f ON f.forum_id = m.mailinglist_forum_id
+                   WHERE m.mailinglist_id = {$row['mailinglist_id']}";
                 $result2 = $this->db->sql_query($sql2);
                 $row['forums'] = $this->db->sql_fetchrowset($result2);
                 $this->db->sql_freeresult($result2);
@@ -109,17 +108,23 @@ class mailinglist_manager
      * Get the mailinglists that apply to the forum
      *
      * @param $forum_id integer  The forum ID
+     * @param $new_topic bool    Indicates if it is a new topic
      * @return array
      */
-    public function get_forum_mailinglists($forum_id)
+    public function get_forum_mailinglists($forum_id, $new_topic)
     {
         $mailinglist_data = $this->get_mailinglists_data();
         $forum_mailinglists = array();
 
         foreach ($mailinglist_data as $mailinglist)
         {
-            $forums = $mailinglist['forums'];
-            if (!count($forums) || array_search($forum_id, array_column($forums, 'mailinglist_forum_id')))
+            if (($new_topic && $mailinglist['mailinglist_post_type'] == self::NEW_POSTS) ||
+                (!$new_topic && $mailinglist['mailinglist_post_type'] == self::NEW_TOPICS))
+            {
+                continue;
+            }
+            $forum_ids = array_column($mailinglist['forums'], 'mailinglist_forum_id');
+            if (!count($forum_ids) || in_array($forum_id, $forum_ids))
             {
                 $forum_mailinglists[] = $mailinglist;
             }
